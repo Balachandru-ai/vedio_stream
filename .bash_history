@@ -130,3 +130,12 @@ sudo yum install stress -y
 stress --cpu 2 --timeout 60
 docker ps
 stress --cpu 2 --timeout 60
+ls
+mkdir logs
+docker logs livekit-livekit-1 > logs/livekit.log 2>&1
+docker cp logs/livekit.log elasticsearch:/tmp/livekit.log
+docker exec -it elasticsearch bash
+docker logs livekit-livekit-1 --tail 20
+docker exec -it elasticsearch bash
+git push -u origin main
+exit
